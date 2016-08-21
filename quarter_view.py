@@ -1,8 +1,8 @@
 # Quarter View の 2D Pixel Image を作成する際のガイド線を引くスクリプト
 
 config = {
-  'width': 64,
-  'height': 64,
+  'width': 80,
+  'height': 80,
   'box_width': 32,
   'box_height': 16,
   'guideline_color': (200,200,200,1.0),
@@ -44,8 +44,8 @@ def draw_guide_line(layer, width, height):
   box_w = config['box_width']
   box_h = config['box_height']
   
-  for x in range(width / box_w):
-    for y in range(height / box_h):
+  for x in range(width / box_w + 1):
+    for y in range(height / box_h + 1):
       draw_rhombus(layer, x * box_w, y * box_h, box_w, box_h)
 
 # Quarter View のガイドラインとなる菱形の描画
