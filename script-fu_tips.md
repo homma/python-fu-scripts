@@ -174,3 +174,16 @@ def list_fonts():
 
 list_fonts()
 ````
+
+## GIMP のメニューを操作する
+- 直接はできない模様
+- osascript 経由でアクセスすることはできそう
+
+````
+import os
+osascript = '''
+tell application "Gimp"
+  activate
+end tell'''
+os.system("osascript -e " + osascript)
+````
