@@ -1,8 +1,8 @@
 # Quarter View の 2D Pixel Image を作成する際のガイド線を引くスクリプト
 
 config = {
-  'width': 80,
-  'height': 80,
+  'width': 96,
+  'height': 96,
   'box_width': 32,
   'box_height': 16,
   'guideline_color': (200,200,200,1.0),
@@ -10,7 +10,8 @@ config = {
   'white': (255,255,255,1.0),
   'black': (0,0,0,1.0),
   'transparent': (255,255,255,0.0),
-  'pencil': 'gimp-pencil'
+  'pencil': 'gimp-pencil',
+  'grid_width': 1
 }
 
 # メイン処理
@@ -24,6 +25,7 @@ def main():
   add_layer(image, "メイン")
   display_image(image)
   initialize()
+  draw_grid(image)
 
 # ツールや画面の初期設定
 def initialize():
@@ -59,6 +61,12 @@ def draw_rhombus(layer, x, y, w, h):
           ]
   for i in range(len(lines)):
     draw_pencil_line(layer, lines[i])
+
+def draw_grid(image):
+  width = config['grid_width']
+  pdb.gimp_image_grid_set_offset(image, 0, 0)
+  pdb.gimp_image_grid_set_spacing(image, width, width)
+  pdb.gimp_image_grid_set_style(image, GRID_SOLID)
 
 # 画像データの作成
 ## 指定したサイズで画像データを作成する
